@@ -1,0 +1,23 @@
+name: CI
+
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    #клонирует репозиторий
+    - uses: actions/checkout@v4
+    #настраивает среду Python, устанавливая указанную версию Python (в данном случае 3.10)
+    - uses: actions/setup-python@v5
+      with:
+        python-version: '3.11' 
+    #запускает скрипт main.py из репозитория
+    - run: python main.py
